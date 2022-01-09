@@ -2,7 +2,7 @@ import { SocketIoChannel } from './channels';
 
 class Sarara {
     options: any;
-    channels: any;
+    channels: {};
     socket: any;
 
     constructor(options: any) {
