@@ -5,7 +5,7 @@
     "build": "npm run compile && npm run declarations",
     "declarations": "./node_modules/.bin/tsc --emitDeclarationOnly",
     "compile": "./node_modules/.bin/rollup -c",
-    "release": "npm run test && standard-version && git push --follow-tags && npm publish",
+    "release": "npm run build && npm version patch && npm publish",
     "test": "jest"
   },
   "main": "dist/sarara.common.js",
