@@ -2,7 +2,7 @@ import { SocketIoChannel } from './channels';
 
 class Sarara {
     options: any;
-    channels: {};
+    channels: { [name: string]: SocketIoChannel } = {};
     socket: any;
 
     constructor(options: any) {
@@ -12,8 +12,8 @@ class Sarara {
 
     connect() {
         this.socket = io(this.options.url, this.options);
-        this.socket.on('connect', () => {
-            Object.values(this.channels).forEach((channel: SocketIoChannel) => channel.subscribe());
+        this.socket.on('reconnect', () => {
+            Object.values(this.channels).forEach((channel) => channel.subscribe());
         });
 
         this.socket.on('disconnect', () => {
@@ -27,7 +27,7 @@ class Sarara {
         return this.socket;
     }
 
-    join(channel) {
+    join(channel) : SocketIoChannel {
         if (!this.channels[channel]) {
             this.channels[channel] = new SocketIoChannel(this.socket, channel, this.options);
         }
