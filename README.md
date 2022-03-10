@@ -1,6 +1,21 @@
-##### Masonite Broadcast Client (Firiri)
+##### Masonite Broadcast Client (Sarara)
 
 This is a library providing client side support for the [Masonite SocketIO Broadcast](https://github.com/yubarajshrestha/socketio-masonite-driver) driver.
+
+<p align="center">
+<a href="https://github.com/yubarajshrestha/masonite-broadcast-client/actions"><img src="https://github.com/yubarajshrestha/masonite-broadcast-client/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
+<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/dt/masonite-broadcast-client" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/v/masonite-broadcast-client" alt="Latest Stable Version"></a>
+<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/l/masonite-broadcast-client" alt="License"></a>
+</p>
+
+**Installation**
+
+```sh
+$ npm install --save masonite-broadcast-client socket.io-client
+```
+
+**Example**
 
 ```js
 window.io = require("socket.io-client");
@@ -41,10 +56,8 @@ chat.speak("your-event", your_data_here).whisper("your-event", your-data_here);
 
 ```
 
-**Installation**
+> Note: still in beta, please report any issues.
 
-```sh
-$ npm install --save masonite-broadcast-client socket.io-client
-```
+**Insipration**
 
-> Nnote: still in beta, please report any issues.
+- [x] [Laravel Echo](https://github.com/laravel/echo)
