@@ -11,6 +11,8 @@ class Sarara {
     }
 
     connect() {
+        let io = this.getSocketIO();
+
         this.socket = io(this.options.url ?? 'http://localhost:9000', this.options);
         this.socket.on('reconnect', () => {
             Object.values(this.channels).forEach((channel) => channel.subscribe());
@@ -36,6 +38,21 @@ class Sarara {
 
     error(error) {
         console.error("Error on socket.io: ", error);
+    }
+
+    /**
+     * Get socket.io module from global scope or options.
+     */
+    getSocketIO(): any {
+        if (typeof this.options.client !== 'undefined') {
+            return this.options.client;
+        }
+
+        if (typeof io !== 'undefined') {
+            return io;
+        }
+
+        throw new Error('Socket.io client not found. Should be globally available or passed via options.client');
     }
 }
 
