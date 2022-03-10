@@ -44,7 +44,7 @@ chat.speak("your-event", your_data_here).whisper("your-event", your-data_here);
 **Installation**
 
 ```sh
-$ npm install --save masonite-broadcast-client
+$ npm install --save masonite-broadcast-client socket.io-client
 ```
 
 > Nnote: still in beta, please report any issues.
