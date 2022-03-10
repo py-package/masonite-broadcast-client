@@ -1,6 +1,6 @@
 {
   "name": "masonite-broadcast-client",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "scripts": {
     "build": "npm run compile && npm run declarations",
     "compile": "./node_modules/.bin/rollup -c",
