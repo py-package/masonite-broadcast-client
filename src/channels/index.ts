@@ -1,1 +1,1 @@
-export * from './SocketIoChannel';
+export * from './socket-io-channel';

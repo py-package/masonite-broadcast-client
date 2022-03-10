@@ -3,13 +3,13 @@
   "version": "1.0.6",
   "scripts": {
     "build": "npm run compile && npm run declarations",
-    "declarations": "./node_modules/.bin/tsc --emitDeclarationOnly",
     "compile": "./node_modules/.bin/rollup -c",
+    "declarations": "./node_modules/.bin/tsc --emitDeclarationOnly",
     "release": "npm run build && npm version patch && npm publish",
     "test": "jest"
   },
   "main": "dist/sarara.common.js",
-  "module": "dist/sarara.sarara.js",
+  "module": "dist/sarara.js",
   "types": "dist/sarara.d.ts",
   "repository": {
     "type": "git",
@@ -39,6 +39,10 @@
     "jest": "^27.4.7",
     "rollup": "^2.63.0",
     "rollup-plugin-typescript2": "^0.31.1",
+    "ts-jest": "^27.1.3",
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/jest": "^27.4.1"
   }
 }

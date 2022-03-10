@@ -39,4 +39,4 @@ class Sarara {
     }
 }
 
-export default Sarara;
+module.exports = Sarara
