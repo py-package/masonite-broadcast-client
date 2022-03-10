@@ -11,7 +11,7 @@ class Sarara {
     }
 
     connect() {
-        this.socket = io(this.options.url, this.options);
+        this.socket = io(this.options.url ?? 'http://localhost:9000', this.options);
         this.socket.on('reconnect', () => {
             Object.values(this.channels).forEach((channel) => channel.subscribe());
         });
