@@ -48,4 +48,11 @@ export class SocketIoChannel {
             auth: this.options.authToken || null
         });
     }
+
+    unsubscribe(): void {
+        this.socket.emit('unsubscribe', {
+            channel: this.name,
+            auth: this.options.auth || {}
+        });
+    }
 }

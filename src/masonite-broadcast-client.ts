@@ -1,6 +1,6 @@
 import { SocketIoChannel } from './channels';
 
-class Sarara {
+class MasoniteBroadcastClient {
     options: any;
     channels: { [name: string]: SocketIoChannel } = {};
     socket: any;
@@ -36,6 +36,20 @@ class Sarara {
         return this.channels[channel];
     }
 
+    leave(name: string): void {
+        let channels = [name, `private-${name}`, `presence-${name}`];
+        channels.forEach((channel) => {
+            this.leaveChannel(channel);
+        });
+    }
+
+    leaveChannel(name: string): void {
+        if (this.channels[name]) {
+            this.channels[name].unsubscribe();
+            delete this.channels[name];
+        }
+    }
+
     error(error) {
         console.error("Error on socket.io: ", error);
     }
@@ -56,4 +70,4 @@ class Sarara {
     }
 }
 
-module.exports = Sarara
+module.exports = MasoniteBroadcastClient

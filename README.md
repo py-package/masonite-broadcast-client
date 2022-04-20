@@ -19,9 +19,9 @@ $ npm install --save masonite-broadcast-client socket.io-client
 
 ```js
 window.io = require("socket.io-client");
-const Sarara = require("masonite-broadcast-client");
+const MasoniteBroadcastClient = require("masonite-broadcast-client");
 
-const socket = new Sarara({
+const socket = new MasoniteBroadcastClient({
   url: "http://localhost:9000",
   namespace: "/",
 });

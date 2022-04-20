@@ -9,9 +9,9 @@
     "release": "npm run build && npm version patch && npm publish",
     "test": "jest"
   },
-  "main": "dist/sarara.common.js",
-  "module": "dist/sarara.js",
-  "types": "dist/sarara.d.ts",
+  "main": "dist/masonite-broadcast-client.common.js",
+  "module": "dist/masonite-broadcast-client.js",
+  "types": "dist/masonite-broadcast-client.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/yubarajshrestha/masonite-broadcast-client"

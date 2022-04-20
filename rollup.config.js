@@ -2,11 +2,11 @@ import babel from '@rollup/plugin-babel';
 import typescript from 'rollup-plugin-typescript2';
 
 export default {
-    input: './src/sarara.ts',
+    input: './src/masonite-broadcast-client.ts',
     output: [
-        { file: './dist/sarara.js', format: 'esm' },
-        { file: './dist/sarara.common.js', format: 'cjs' },
-        { file: './dist/sarara.iife.js', format: 'iife', name: 'Sarara' },
+        { file: './dist/masonite-broadcast-client.js', format: 'esm' },
+        { file: './dist/masonite-broadcast-client.common.js', format: 'cjs' },
+        { file: './dist/masonite-broadcast-client.iife.js', format: 'iife', name: 'MasoniteBroadcastClient' },
     ],
     plugins: [
         typescript(),
