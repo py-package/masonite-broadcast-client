@@ -1,4 +1,4 @@
-##### Masonite Broadcast Client
+# Masonite Broadcast Client (WIP)
 
 <p align="center">
     <img src="https://banners.beyondco.de/Masonite%20Broadcast%20Client.png?theme=light&packageManager=yarn+add&packageName=masonite-broadcast-client&pattern=charlieBrown&style=style_2&description=Broadcast+client+for+masonite+framework.&md=1&showWatermark=1&fontSize=100px&images=adjustments&widths=50&heights=50">
@@ -20,7 +20,8 @@
 **Installation**
 
 ```sh
-$ npm install --save masonite-broadcast-client socket.io-client
+$ npm install masonite-broadcast-client socket.io-client
+$ yarn add masonite-broadcast-client socket.io-client
 ```
 
 **Example**

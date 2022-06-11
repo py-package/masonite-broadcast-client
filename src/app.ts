@@ -4,7 +4,7 @@ type Config = {
     url: string,
 }
 
-class Broadcast {
+class MasoniteBroadcastClient {
     client: any;
 
     constructor(config: Config) {
@@ -23,7 +23,6 @@ class Broadcast {
         this.client.send(`leave`, {
             channel,
         });
-        console.log(channel)
         callback("You are unsubscribed from channel");
     }
 
@@ -55,7 +54,6 @@ class Broadcast {
 }
 
 // make it available to the outside world
+(<any>window).MasoniteBroadcastClient = MasoniteBroadcastClient;
 
-(<any>window).Broadcast = Broadcast;
-
-export default Broadcast;
+export default MasoniteBroadcastClient;
