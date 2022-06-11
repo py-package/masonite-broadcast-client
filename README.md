@@ -1,12 +1,20 @@
-##### Masonite Broadcast Client (Sarara)
-
-This is a library providing client side support for the [Masonite SocketIO Broadcast](https://github.com/yubarajshrestha/socketio-masonite-driver) driver.
+##### Masonite Broadcast Client
 
 <p align="center">
-<a href="https://github.com/yubarajshrestha/masonite-broadcast-client/actions"><img src="https://github.com/yubarajshrestha/masonite-broadcast-client/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
-<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/dt/masonite-broadcast-client" alt="Total Downloads"></a>
-<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/v/masonite-broadcast-client" alt="Latest Stable Version"></a>
-<a href="https://www.npmjs.com/package/masonite-broadcast-client"><img src="https://img.shields.io/npm/l/masonite-broadcast-client" alt="License"></a>
+    <img src="https://banners.beyondco.de/Masonite%20Broadcast%20Client.png?theme=light&packageManager=yarn+add&packageName=masonite-broadcast-client&pattern=charlieBrown&style=style_2&description=Broadcast+client+for+masonite+framework.&md=1&showWatermark=1&fontSize=100px&images=adjustments&widths=50&heights=50">
+</p>
+
+
+> This is a library providing client side support for the [Masonite Broadcast Library](https://github.com/yubarajshrestha/socketio-masonite-driver) driver.
+
+
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/npm/v/masonite-broadcast-client">
+  <img alt="Issues" src="https://img.shields.io/github/issues/yubarajshrestha/masonite-broadcast-client">
+  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/yubarajshrestha/masonite-broadcast-client">
+  <img alt="License" src="https://img.shields.io/github/license/yubarajshrestha/masonite-broadcast-client">
+  <a href="https://github.com/yubarajshrestha/masonite-permission/stargazers"><img alt="star" src="https://img.shields.io/github/stars/yubarajshrestha/masonite-broadcast-client" /></a>
+  <img alt="downloads" src="https://img.shields.io/npm/dm/masonite-broadcast-client" />
 </p>
 
 **Installation**
@@ -55,9 +63,3 @@ chat.whisper("your-event", your_data_here)
 chat.speak("your-event", your_data_here).whisper("your-event", your-data_here);
 
 ```
-
-> Note: still in beta, please report any issues.
-
-**Insipration**
-
-- [x] [Laravel Echo](https://github.com/laravel/echo)

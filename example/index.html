@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../dist/mbroadcast.js"></script>
+</head>
+
+<body>
+    <div id="mbroadcast">
+        <button>Whisper</button>
+        <button>Speak</button>
+    </div>
+
+    <script>
+        function getQueryString() {
+            const queryString = {};
+            const query = window.location.search.substring(1);
+            const vars = query.split("&");
+            for (let i = 0; i < vars.length; i++) {
+                const pair = vars[i].split("=");
+                // If first entry with this name
+                if (typeof queryString[pair[0]] === "undefined") {
+                    queryString[pair[0]] = decodeURIComponent(pair[1]);
+                } else if (typeof queryString[pair[0]] === "string") {
+                    queryString[pair[0]] = [queryString[pair[0]], decodeURIComponent(pair[1])];
+                } else {
+                    queryString[pair[0]].push(decodeURIComponent(pair[1]));
+                }
+            }
+            return queryString['channel'];
+        }
+
+        // get url query string ?channel=test
+        var channel = getQueryString() ?? "default";
+
+        if (Broadcast !== undefined) {
+            const whisperButton = document.querySelector('#mbroadcast button:first-child');
+            const speakButton = document.querySelector('#mbroadcast button:last-child');
+
+            const broadcast = new Broadcast({
+                url: 'http://localhost:3000/',
+            })
+
+            broadcast.subscribe(channel, (data) => {
+                console.log(data);
+            });
+
+            broadcast.listen("message", (data) => {
+                console.log(data);
+            });
+
+            broadcast.listen("TestEvent", (data) => {
+                console.log(data);
+            });
+
+            broadcast.listen("private-TestEvent", (data) => {
+                console.log(data);
+            });
+
+            // whisperButton.addEventListener('click', () => {
+            //     broadcast.whisper('message', 'Hello, I am a whisper');
+            // });
+            //
+            // speakButton.addEventListener('click', () => {
+            //     broadcast.speak('message', 'Hello, I am a speak');
+            // });
+            //
+            // broadcast.listen("message", (data) => {
+            //     console.log(data);
+            // });
+            //
+            // broadcast.listenForWhisper("message", (data) => {
+            //     console.log(data);
+            // });
+            //
+            // broadcast.listenForWhisper("user.1", (data) => {
+            //     console.log(data);
+            // });
+        }
+    </script>
+</body>
+
+</html>

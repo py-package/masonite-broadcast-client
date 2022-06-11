@@ -1,0 +1,27 @@
+{
+  "name": "masonite-broadcast-client",
+  "version": "2.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.14.41",
+    "socket.io-client": "^4.5.1"
+  },
+  "scripts": {
+    "build": "esbuild src/app.ts --bundle --outfile=dist/mbroadcast.js --minify --sourcemap",
+    "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/test-masonite/storage/public/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yubarajshrestha/masonite-broadcast-client"
+  },
+  "keywords": [
+    "masonite",
+    "socket.io"
+  ],
+  "author": "Yubaraj Shrestha <companion.krish@gmail.com> (https://yubarajshrestha.com.np)",
+  "bugs": {
+    "url": "https://github.com/yubarajshrestha/masonite-broadcast-client/issues"
+  },
+  "homepage": "https://github.com/yubarajshrestha/masonite-broadcast-client"
+}
