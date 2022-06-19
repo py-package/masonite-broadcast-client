@@ -1,6 +1,6 @@
 {
   "name": "masonite-broadcast-client",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "esbuild src/app.ts --bundle --outfile=dist/mbroadcast.js --minify --sourcemap",
-    "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/test-masonite/storage/public/"
+    "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/test-masonite/storage/public/",
+    "release": "npm run build && npm version patch && npm publish"
   },
   "repository": {
     "type": "git",

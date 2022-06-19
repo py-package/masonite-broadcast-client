@@ -5,7 +5,11 @@
 </p>
 
 
-> This is a library providing client side support for the [Masonite Broadcast Library](https://github.com/yubarajshrestha/socketio-masonite-driver) driver.
+> This is a library providing client side support for the Masonite broadcast driver.
+
+> [Broadcast Driver Link for Backend](https://github.com/yubarajshrestha/masonite-socketio-driver)
+
+> [Broadcast Server](https://github.com/yubarajshrestha/masonite-broadcast-server)
 
 
 <p align="center">
@@ -32,7 +36,7 @@ const MasoniteBroadcastClient = require("masonite-broadcast-client");
 
 const socket = new MasoniteBroadcastClient({
   url: "http://localhost:9000",
-  namespace: "/",
+  channel: "default",
 });
 
 const channel = socket.join("default");

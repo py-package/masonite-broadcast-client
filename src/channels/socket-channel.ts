@@ -2,23 +2,27 @@ import { io } from "socket.io-client";
 
 class SocketChannel {
     socket: any;
+    name: string;
+    channels: { [name: string]: SocketChannel } = {};
 
-    static connect(url: string) {
+    static connect(config: Config) {
         const channel = new SocketChannel();
-        channel.__init(url);
+        channel.__init(config);
         return channel;
     }
 
-    __init(url = 'http://localhost:3000') {
-        this.socket = io(url, {
+    __init(config: Config) {
+        this.socket = io(config.url, {
             transports: ["websocket", "polling"],
             path: "/socket.io"
         });
-
+        this.name = config.channel || "default";
+        this.channels[config.channel] = this;
+        this.__subscribe();
         this.socket.on("connect_error", this.__connect_error.bind(this));
-
         this.socket.on("connect", this.__connect.bind(this));
         this.socket.on("disconnect", this.__disconnect.bind(this));
+        this.socket.on("reconnect", this.__reconnect.bind(this));
 
         // listen to any events
         // this.socket.onAny((event, ...args) => {
@@ -37,10 +41,16 @@ class SocketChannel {
         console.log("connected");
     }
 
-    __subscribe(channel: string, callback: Function) {
-        this.socket.emit("join", {
-            channel: channel,
-            name: 'name',
+    __reconnect() {
+        Object.values(this.channels).forEach((channel) => {
+            channel.__subscribe();
+        })
+    }
+
+    __subscribe() {
+        this.socket.emit("subscribe", {
+            channel: this.name,
+            auth: {}
         });
     }
 
