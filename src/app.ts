@@ -1,9 +1,5 @@
 import SocketChannel from './channels/socket-channel';
 
-type Config = {
-    url: string,
-}
-
 class MasoniteBroadcastClient {
     client: any;
 
@@ -11,19 +7,12 @@ class MasoniteBroadcastClient {
         if (!config.url) {
             throw new Error('url is required');
         }
-
-        this.client = SocketChannel.connect(config.url);
+        this.client = SocketChannel.connect(config);
+        this.registerInterceptors();
     }
 
-    subscribe(channel: string, callback: Function) {
-        this.client.__subscribe(channel, callback);
-    }
-
-    unsubscribe(channel: string, callback: Function) {
-        this.client.send(`leave`, {
-            channel,
-        });
-        callback("You are unsubscribed from channel");
+    socketId() {
+        return this.client.socketId;
     }
 
     whisper(event: string, message: any) {
@@ -50,7 +39,11 @@ class MasoniteBroadcastClient {
         this.client.listenForWhisper(event, callback);
     }
 
-
+    registerInterceptors() {
+        if (this.socketId()) {
+            console.log("Socket ID: " + this.socketId());
+        }
+    }
 }
 
 // make it available to the outside world
