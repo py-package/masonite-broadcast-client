@@ -36,7 +36,7 @@ const MasoniteBroadcastClient = require("masonite-broadcast-client");
 
 const socket = new MasoniteBroadcastClient({
   url: "http://localhost:9000",
-  namespace: "/",
+  channel: "default",
 });
 
 const channel = socket.join("default");
