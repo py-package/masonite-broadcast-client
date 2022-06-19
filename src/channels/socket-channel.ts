@@ -75,7 +75,6 @@ class SocketChannel {
     }
 
     send(event, message) {
-        console.log(event, message);
         this.socket.emit(event, message);
     }
 }
