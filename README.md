@@ -7,17 +7,17 @@
 
 > This is a library providing client side support for the Masonite broadcast driver.
 
-> [Broadcast Driver Link for Backend](https://github.com/yubarajshrestha/masonite-socketio-driver)
+> [Broadcast Driver Link for Backend](https://github.com/py-package/masonite-socketio-driver)
 
-> [Broadcast Server](https://github.com/yubarajshrestha/masonite-broadcast-server)
+> [Broadcast Server](https://github.com/py-package/masonite-broadcast-server)
 
 
 <p align="center">
   <img alt="Version" src="https://img.shields.io/npm/v/masonite-broadcast-client">
-  <img alt="Issues" src="https://img.shields.io/github/issues/yubarajshrestha/masonite-broadcast-client">
-  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/yubarajshrestha/masonite-broadcast-client">
-  <img alt="License" src="https://img.shields.io/github/license/yubarajshrestha/masonite-broadcast-client">
-  <a href="https://github.com/yubarajshrestha/masonite-permission/stargazers"><img alt="star" src="https://img.shields.io/github/stars/yubarajshrestha/masonite-broadcast-client" /></a>
+  <img alt="Issues" src="https://img.shields.io/github/issues/py-package/masonite-broadcast-client">
+  <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/py-package/masonite-broadcast-client">
+  <img alt="License" src="https://img.shields.io/github/license/py-package/masonite-broadcast-client">
+  <a href="https://github.com/py-package/masonite-permission/stargazers"><img alt="star" src="https://img.shields.io/github/stars/py-package/masonite-broadcast-client" /></a>
   <img alt="downloads" src="https://img.shields.io/npm/dm/masonite-broadcast-client" />
 </p>
 
@@ -39,23 +39,11 @@ const socket = new MasoniteBroadcastClient({
   channel: "default",
 });
 
-const channel = socket.join("default");
-
 channel.listen('message', (data) => {
     console.log(data);
 }).listen('your-event', (data) => {
     console.log(data);
 })...;
-
-/** You can join to other channels as well */
-
-const chat = socket.join("chat");
-chat.listen('message', (data) => {
-    console.log(data);
-}).listen('your-event', (data) => {
-    console.log(data);
-})...;
-
 
 /** Broadcast to all */
 chat.speak("your-event", your_data_here)

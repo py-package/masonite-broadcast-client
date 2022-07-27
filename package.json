@@ -22,7 +22,7 @@
   ],
   "author": "Yubaraj Shrestha <companion.krish@gmail.com> (https://py-package.com)",
   "bugs": {
-    "url": "https://github.com/yubarajshrestha/masonite-broadcast-client/issues"
+    "url": "https://github.com/py-package/masonite-broadcast-client/issues"
   },
-  "homepage": "https://github.com/yubarajshrestha/masonite-broadcast-client"
+  "homepage": "https://github.com/py-package/masonite-broadcast-client"
 }
