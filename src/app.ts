@@ -15,6 +15,10 @@ class MasoniteBroadcastClient {
         return this.client.socketId;
     }
 
+    // subscribe(channel: string) {
+    //     this.client.subscribe(channel);
+    // }
+
     whisper(event: string, message: any) {
         this.client.send(`whisper`, {
             type: event,

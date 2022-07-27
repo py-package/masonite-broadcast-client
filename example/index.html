@@ -45,10 +45,6 @@
                 url: 'http://localhost:3000/',
             })
 
-            broadcast.subscribe(channel, (data) => {
-                console.log(data);
-            });
-
             broadcast.listen("message", (data) => {
                 console.log(data);
             });

@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yubarajshrestha/masonite-broadcast-client"
+    "url": "https://github.com/py-package/masonite-broadcast-client"
   },
   "keywords": [
     "masonite",
     "socket.io"
   ],
-  "author": "Yubaraj Shrestha <companion.krish@gmail.com> (https://yubarajshrestha.com.np)",
+  "author": "Yubaraj Shrestha <companion.krish@gmail.com> (https://py-package.com)",
   "bugs": {
     "url": "https://github.com/yubarajshrestha/masonite-broadcast-client/issues"
   },
