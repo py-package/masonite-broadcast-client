@@ -7,9 +7,9 @@
 
 > This is a library providing client side support for the Masonite broadcast driver.
 
-> [Broadcast Driver Link for Backend](https://github.com/py-package/masonite-socketio-driver)
-
-> [Broadcast Server](https://github.com/py-package/masonite-broadcast-server)
+**Masonite Broadcast Server and Client Library**
+- [x] [Broadcast Driver - Backend](https://github.com/py-package/masonite-socketio-driver)
+- [x] [Broadcast Server](https://github.com/py-package/masonite-broadcast-server)
 
 
 <p align="center">
@@ -17,7 +17,7 @@
   <img alt="Issues" src="https://img.shields.io/github/issues/py-package/masonite-broadcast-client">
   <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/py-package/masonite-broadcast-client">
   <img alt="License" src="https://img.shields.io/github/license/py-package/masonite-broadcast-client">
-  <a href="https://github.com/py-package/masonite-permission/stargazers"><img alt="star" src="https://img.shields.io/github/stars/py-package/masonite-broadcast-client" /></a>
+  <a href="https://github.com/py-package/masonite-broadcast-client/stargazers"><img alt="star" src="https://img.shields.io/github/stars/py-package/masonite-broadcast-client" /></a>
   <img alt="downloads" src="https://img.shields.io/npm/dm/masonite-broadcast-client" />
 </p>
 
