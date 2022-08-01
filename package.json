@@ -10,7 +10,8 @@
   "scripts": {
     "build": "esbuild src/app.ts --bundle --outfile=dist/mbroadcast.js --minify --sourcemap",
     "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/test-masonite/storage/public/",
-    "release": "npm run build && npm version patch && npm publish"
+    "release": "npm run build && npm version patch && npm publish",
+    "lint": "eslint src/**/*.ts"
   },
   "repository": {
     "type": "git",
