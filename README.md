@@ -35,24 +35,23 @@ window.io = require("socket.io-client");
 const MasoniteBroadcastClient = require("masonite-broadcast-client");
 
 const socket = new MasoniteBroadcastClient({
-  url: "http://localhost:9000",
-  channel: "default",
+  url: "http://localhost:3000",
 });
+
+socket.onUserConnected(user => {
+  console.log(`${user.userID} connected`);
+});
+
+/** Broadcast to all */
+chat.emit("your-event", your_data_here)
+
+/** Broadcast to all except the sender */
+chat.broadcast("your-event", your_data_here);
 
 channel.listen('message', (data) => {
     console.log(data);
 }).listen('your-event', (data) => {
     console.log(data);
 })...;
-
-/** Broadcast to all */
-chat.speak("your-event", your_data_here)
-
-/** Broadcast to all except the sender */
-chat.whisper("your-event", your_data_here)
-
-/** You can also channel all methods */
-
-chat.speak("your-event", your_data_here).whisper("your-event", your-data_here);
 
 ```

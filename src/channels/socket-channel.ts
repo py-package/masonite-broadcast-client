@@ -2,80 +2,82 @@ import { io } from "socket.io-client";
 
 class SocketChannel {
     socket: any;
-    name: string;
-    channels: { [name: string]: SocketChannel } = {};
+    channel: string;
+    config: any;
+    private listeners: any = {};
 
-    static connect(config: Config) {
+    static connect(socket, name, config: Config) {
         const channel = new SocketChannel();
-        channel.__init(config);
+        channel.#init(socket, name, config);
         return channel;
     }
 
-    __init(config: Config) {
-        this.socket = io(config.url, {
-            transports: ["websocket", "polling"],
-            path: "/socket.io"
-        });
-        this.name = config.channel || "default";
-        this.channels[config.channel] = this;
-        this.__subscribe();
-        this.socket.on("connect_error", this.__connect_error.bind(this));
-        this.socket.on("connect", this.__connect.bind(this));
-        this.socket.on("disconnect", this.__disconnect.bind(this));
-        this.socket.on("reconnect", this.__reconnect.bind(this));
-
-        // listen to any events
-        // this.socket.onAny((event, ...args) => {
-        //     console.log(event);
-        //     console.log(args);
-        // });
-
-        this.socket.on('close', this.onClose.bind(this));
+    #init(socket, channel, config: Config) {
+        this.socket = socket;
+        this.channel = channel;
+        this.config = config;
+        this.listeners = {};
+        this.subscribe();
     }
 
-    __connect_error() {
-        this.socket.io.opts.transports = ["polling", "websocket"];
-    }
-
-    __connect() {
-        console.log("connected");
-    }
-
-    __reconnect() {
-        Object.values(this.channels).forEach((channel) => {
-            channel.__subscribe();
-        })
-    }
-
-    __subscribe() {
+    subscribe(): void {
         this.socket.emit("subscribe", {
-            channel: this.name,
-            auth: {}
+            channel: this.channel,
         });
     }
 
-    __disconnect() {
-        console.log('SocketChannel: disconnect', this.socket.id);
+    unsubscribe(): void {
+        this.socket.emit("unsubscribe", {
+            channel: this.channel,
+        });
     }
 
-    listen(event, callback) {
-        this.socket.on(event, callback);
+    whisper(event, data: Object): SocketChannel {
+        this.socket.emit("whisper", {
+            channel: this.channel,
+            event: event,
+            data: data,
+        });
+        return this;
+    }
+
+    speak(event, data: Object): SocketChannel {
+        this.socket.emit("speak", {
+            channel: this.channel,
+            event: event,
+            data: data,
+        });
+        return this;
+    }
+
+    listen(event: any, callback: Function): SocketChannel {
+        if (!this.listeners[event]) {
+            this.listeners[event] = (data) => {
+                callback(data);
+            };
+            this.socket.on(event, this.listeners[event]);
+        }
+        return this;
     }
 
     listenForWhisper(event, callback) {
-        this.socket.on("whisper", (payload) => {
-            if (payload.type === event) {
-                callback(payload.payload);
-            }
+        this.socket.on(`whisper:${event}`, callback);
+    }
+
+    emit(event, message) {
+        this.socket.emit("emit", {
+            channel: this.channel,
+            event: event,
+            data: message,
         });
     }
 
-    onClose() {
-        console.log('SocketChannel: close');
-    }
-
-    send(event, message) {
-        this.socket.emit(event, message);
+    broadcast(event, message) {
+        this.socket.emit("broadcast", {
+            channel: this.channel,
+            event: event,
+            data: message,
+        });
     }
 }
 
