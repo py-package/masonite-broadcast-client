@@ -1,5 +1,3 @@
-import { io } from "socket.io-client";
-
 class SocketChannel {
     socket: any;
     channel: string;

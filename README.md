@@ -42,16 +42,33 @@ socket.onUserConnected(user => {
   console.log(`${user.userID} connected`);
 });
 
+
+const chat = socket.subscribe("chat");
+
 /** Broadcast to all */
 chat.emit("your-event", your_data_here)
 
 /** Broadcast to all except the sender */
 chat.broadcast("your-event", your_data_here);
 
+
+const news = socket.subscribe("news");
+news.listen("highlights", (data) => {
+  console.log(data);
+});
+
+
 channel.listen('message', (data) => {
     console.log(data);
 }).listen('your-event', (data) => {
     console.log(data);
 })...;
+
+
+/** You can add an extra value in session */
+socket.setExtra("value", (user) => { // value here must not be complex data types
+  console.log(user);
+})
+
 
 ```

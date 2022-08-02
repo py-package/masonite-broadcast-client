@@ -1,5 +1,11 @@
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 import SocketChannel from './channels/socket-channel';
+
+type AUTH = {
+    userID: string | undefined;
+    authToken: string | undefined;
+    sessionID: string | undefined;
+}
 
 class MasoniteBroadcastClient {
     config: any;
@@ -13,6 +19,27 @@ class MasoniteBroadcastClient {
         this.config = config;
         this.#connect();
     }
+
+    setExtra(value, callback) {
+        this.socket.emit("setExtra", {
+            extra: value
+        }, (value) => {
+            callback(value);
+        });
+    }
+
+    // setAuth(auth: AUTH, callback: Function) {
+    //     try {
+    //         if (auth.sessionID === undefined) {
+    //             auth.sessionID = localStorage.getItem('sessionID');
+    //         }
+    //         this.socket.auth = auth;
+    //         this.socket.connect();
+    //         callback(true);
+    //     } catch (error) {
+    //         callback(error);
+    //     }
+    // }
 
     #connect() {
         this.socket = io(this.config.url, {
