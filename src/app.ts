@@ -1,12 +1,6 @@
 import { io } from "socket.io-client";
 import SocketChannel from './channels/socket-channel';
 
-type AUTH = {
-    userID: string | undefined;
-    authToken: string | undefined;
-    sessionID: string | undefined;
-}
-
 class MasoniteBroadcastClient {
     config: any;
     socket = undefined;
@@ -27,19 +21,6 @@ class MasoniteBroadcastClient {
             callback(value);
         });
     }
-
-    // setAuth(auth: AUTH, callback: Function) {
-    //     try {
-    //         if (auth.sessionID === undefined) {
-    //             auth.sessionID = localStorage.getItem('sessionID');
-    //         }
-    //         this.socket.auth = auth;
-    //         this.socket.connect();
-    //         callback(true);
-    //     } catch (error) {
-    //         callback(error);
-    //     }
-    // }
 
     #connect() {
         this.socket = io(this.config.url, {
@@ -62,6 +43,10 @@ class MasoniteBroadcastClient {
             localStorage.setItem('sessionID', sessionID);
             this.socket.userID = userID;
             this.socket.connect();
+        });
+
+        this.socket.on("connect", () => {
+            console.log("connected");
         });
 
         this.socket.on("reconnect", this.#reconnect.bind(this));
@@ -106,6 +91,14 @@ class MasoniteBroadcastClient {
         return this.channels[channel];
     }
 
+    listen(event: string, callback: Function) {
+        this.socket.on(event, callback);
+    }
+
+    listenForWhisper(event, callback) {
+        this.socket.on(`whisper:${event}`, callback);
+    }
+
     onClientConnected(callback) {
         this.socket.on("user:connected", callback);
     }
@@ -116,6 +109,6 @@ class MasoniteBroadcastClient {
 }
 
 // make it available to the outside world
-(<any>window).MasoniteBroadcastClient = MasoniteBroadcastClient;
+(window as any).MasoniteBroadcastClient = MasoniteBroadcastClient;
 
 export default MasoniteBroadcastClient;

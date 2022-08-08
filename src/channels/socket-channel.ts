@@ -22,6 +22,32 @@ class SocketChannel {
         this.socket.emit("subscribe", {
             channel: this.channel,
         });
+
+        let data = {
+            channel_name: this.channel,
+            socket_id: this.socket.auth.sessionID,
+        }
+
+        if (this.config.broadcastUrl) {
+            fetch('/pusher/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }).then((response) => {
+                if (response.status === 200) return response.json();
+                return false;
+            }).catch((error) => {
+                //! ignore
+            }).then((data) => {
+                if (data !== false) {
+                    this.socket.emit("subscribe", {
+                        channel: `private-${this.channel}`
+                    })
+                }
+            });
+        }
     }
 
     unsubscribe(): void {

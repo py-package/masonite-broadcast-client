@@ -31,44 +31,48 @@ $ yarn add masonite-broadcast-client socket.io-client
 **Example**
 
 ```js
+/** Connection */
+
 window.io = require("socket.io-client");
 const MasoniteBroadcastClient = require("masonite-broadcast-client");
 
-const socket = new MasoniteBroadcastClient({
-  url: "http://localhost:3000",
+const broadcast = new MasoniteBroadcastClient({
+    url: "http://localhost:3000",
+    broadcastUrl: "http://localhost:8000/broadcast/auth" // optional
 });
 
-socket.onUserConnected(user => {
-  console.log(`${user.userID} connected`);
+broadcast.onUserConnected(user => {
+    console.log(`${user.userID} connected`);
 });
+```
+```js
+/** You can add an extra value in session */
 
+broadcast.setExtra("value", (user) => { // value here must not be complex data types
+    console.log(user);
+})
+```
+```js
+/** Subscribe to channel */
 
-const chat = socket.subscribe("chat");
-
+const subscription = broadcast.subscribe("chat");
+```
+```js
 /** Broadcast to all */
-chat.emit("your-event", your_data_here)
 
+subscription.emit("your-event", your_data_here)
+```
+```js
 /** Broadcast to all except the sender */
-chat.broadcast("your-event", your_data_here);
 
+subscription.broadcast("your-event", your_data_here);
+```
+```js
+/** Listen for events */
 
-const news = socket.subscribe("news");
-news.listen("highlights", (data) => {
-  console.log(data);
-});
-
-
-channel.listen('message', (data) => {
+subscription.listen('message', (data) => {
     console.log(data);
 }).listen('your-event', (data) => {
     console.log(data);
-})...;
-
-
-/** You can add an extra value in session */
-socket.setExtra("value", (user) => { // value here must not be complex data types
-  console.log(user);
-})
-
-
+});
 ```

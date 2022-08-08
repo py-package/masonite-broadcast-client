@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "esbuild src/app.ts --bundle --outfile=dist/mbroadcast.js --minify --sourcemap",
-    "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/test-masonite/storage/public/",
+    "copy": "yarn build && cp -r dist ~/Projects/MasonitePackages/masonite-socketio-driver/tests/integrations/storage/public/",
     "release": "npm run build && npm version patch && npm publish",
     "lint": "eslint src/**/*.ts"
   },
@@ -26,5 +26,8 @@
     "url": "https://github.com/py-package/masonite-broadcast-client/issues"
   },
   "homepage": "https://github.com/py-package/masonite-broadcast-client",
-  "module": "dist/mbroadcast.js"
+  "module": "dist/mbroadcast.js",
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  }
 }
