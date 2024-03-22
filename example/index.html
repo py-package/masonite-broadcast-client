@@ -37,11 +37,11 @@
         // get url query string ?channel=test
         var channel = getQueryString() ?? "default";
 
-        if (Broadcast !== undefined) {
+        if (MasoniteBroadcastClient !== undefined) {
             const whisperButton = document.querySelector('#mbroadcast button:first-child');
             const speakButton = document.querySelector('#mbroadcast button:last-child');
 
-            const broadcast = new Broadcast({
+            const broadcast = new MasoniteBroadcastClient({
                 url: 'http://localhost:3000/',
             })
 

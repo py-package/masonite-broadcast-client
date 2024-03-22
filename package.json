@@ -4,8 +4,8 @@
   "main": "dist/mbroadcast.js",
   "license": "MIT",
   "dependencies": {
-    "esbuild": "^0.14.41",
-    "socket.io-client": "^4.5.1"
+    "esbuild": "^0.20.2",
+    "socket.io-client": "^4.7.5"
   },
   "scripts": {
     "build": "esbuild src/app.ts --bundle --outfile=dist/mbroadcast.js --minify --sourcemap",
@@ -28,6 +28,6 @@
   "homepage": "https://github.com/py-package/masonite-broadcast-client",
   "module": "dist/mbroadcast.js",
   "devDependencies": {
-    "eslint": "^8.21.0"
+    "eslint": "^8.57.0"
   }
 }

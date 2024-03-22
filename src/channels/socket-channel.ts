@@ -25,7 +25,7 @@ class SocketChannel {
 
         let data = {
             channel_name: this.channel,
-            socket_id: this.socket.auth.sessionID,
+            socket_id: this.socket.auth?.sessionID,
         }
 
         if (this.config.broadcastUrl) {
